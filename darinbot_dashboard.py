@@ -45,8 +45,11 @@ class masterMsg:
                       '51':'볼케이노','52':'터닝포인트'}
         todayDate = datetime.now().strftime("%Y-%m-%dT00:00:00.000Z")
         for masterId in masterDict.keys():
-            numMsg = masterMsg().all(masterId, todayDate)
+            numMsg = self.all(masterId, todayDate)
             
             query = sa.insert(table).values(masterId=masterId, masterNickname=masterDict[masterId], numMsg =numMsg, createdTime=datetime.now())
             result = connection.execute(query)
             result.close()
+
+if __name__ == '__main__':
+    masterMsg().save_msg_db()
