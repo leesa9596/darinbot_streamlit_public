@@ -23,7 +23,7 @@ load_dotenv()
 
 class masterMsg:
     def __init__(self):
-        self.api_url = "https://cms.tudal.co.kr/master-feeds?token=xnwkdmlekfdlsuser@020"
+        self.api_url = os.getenv('cms_url')
 
     def all(self, masterId, todayDate):
         r = requests.get(self.api_url + f"&master={masterId}&created_at_gt={todayDate}&_sort=created_at:ASC")
@@ -32,7 +32,7 @@ class masterMsg:
         return len(master_msg)
     
     def save_msg_db(self):
-        darinbot_str = darinbot_str='mysql+pymysql://admin:dlshvls22@tudalus.c418xgpmd0xv.ap-northeast-2.rds.amazonaws.com/darinbot'
+        darinbot_str=os.getenv('darinbot_str')
         engine = sa.create_engine(darinbot_str)
         
         connection = engine.connect()
