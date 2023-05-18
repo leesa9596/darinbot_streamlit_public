@@ -6,7 +6,6 @@ import pandas as pd
 
 
 st.title("Darinbot Msg Count App")
-st.write("DB:", st.secrets["database"])
 
 conn = st.experimental_connection('mysql', type='sql')
 
